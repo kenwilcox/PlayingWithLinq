@@ -2,7 +2,7 @@
 
 void Main()
 {
-	IEnumerable<Employee> employees = new List<Employee>()
+	List<Employee> employees = new List<Employee>()
 	{
 		new Employee {ID=1, Name="Scott", HireDate=new DateTime(2002, 3, 5) },
 		new Employee {ID=2, Name="Poonam", HireDate=new DateTime(2002, 10, 15) },
@@ -25,6 +25,12 @@ void Main()
 	Console.WriteLine("Or Done Another Way");
 	
 	var items = employees.Where(s => s.HireDate.Year > 2003).OrderBy(k => k.Name);
+	foreach(Employee item in items) {
+	  Console.WriteLine(item.Name);
+	}
+	
+	Console.WriteLine("Proving delayed execution");
+	employees.Add(new Employee {ID=6, Name="Ringo", HireDate=new DateTime(2007, 6, 14) });
 	foreach(Employee item in items) {
 	  Console.WriteLine(item.Name);
 	}
