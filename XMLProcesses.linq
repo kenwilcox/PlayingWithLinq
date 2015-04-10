@@ -1,6 +1,4 @@
-<Query Kind="Statements">
-  <Output>DataGrids</Output>
-</Query>
+<Query Kind="Statements" />
 
 XDocument doc = new XDocument(
 	new XElement("Processes",
@@ -14,4 +12,9 @@ XDocument doc = new XDocument(
 		)
 	);
 
-doc.Dump();
+//doc.Dump();
+
+// Find visual studio process
+var pids = doc.Descendants("Process")
+	.Where(e => e.Attribute("Name").Value.StartsWith("devenv"));
+pids.Dump();
