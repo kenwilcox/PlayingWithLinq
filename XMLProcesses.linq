@@ -16,5 +16,6 @@ XDocument doc = new XDocument(
 
 // Find visual studio process
 var pids = doc.Descendants("Process")
-	.Where(e => e.Attribute("Name").Value.StartsWith("devenv"));
+	.Where(e => e.Attribute("Name").Value.StartsWith("devenv"))
+	.Select(e => (int)e.Attribute("PID"));
 pids.Dump();
