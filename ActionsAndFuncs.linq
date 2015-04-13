@@ -10,9 +10,9 @@ Action<int, int> addAndPrintTwoNumbers = (x, y) =>
 
 Func<DateTime> getDate = () => DateTime.Now;
 Func<int, int> square = x => x * x;
-Func<int, int, int> multiply = (x, y) => x * y;
-
-
+//Func<int, int, int> multiply = (x, y) => x * y;
+Expression<Func<int, int, int>> multiply = (x, y) => x * y;
+Func<int, int, int> mult = multiply.Compile();
 
 printEmptyLine();
 printNumber(10);
