@@ -1,13 +1,9 @@
 <Query Kind="Statements" />
 
-var processList =
-	from process in Process.GetProcesses()
-	orderby process.Threads.Count descending,
-	process.ProcessName ascending
-	select new {
-		process.ProcessName,
-		ThreadCount = process.Threads.Count
-	};
+var processList = Process.GetProcesses()
+	.OrderByDescending(p => p.Threads.Count)
+	.ThenBy(p=> p.ProcessName)
+	.Select(process => new {process.ProcessName, ThreadCount = process.Threads.Count});
 
 Console.WriteLine("Process List");
 foreach(var process in processList)
