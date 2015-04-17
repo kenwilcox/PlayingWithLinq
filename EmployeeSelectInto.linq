@@ -60,6 +60,29 @@ void Main()
 			Console.WriteLine(employee.Name);
 		}
 	}
+	
+	// Grouping and Projecting
+	var groupedEmployees = 
+		from employee in employees
+		group employee
+		by new {Year = employee.HireDate.Year,
+	  			FirstLetter = employee.Name[0]}
+		into gEmployee
+		where gEmployee.Count() > 1
+		select new {Year = gEmployee.Key.Year,
+	  				FirstLetter = gEmployee.Key.FirstLetter,
+					Count = gEmployee.Count() 
+		};
+		
+	Console.WriteLine("Grouping and Projecting");
+	foreach (var group in groupedEmployees)
+	{
+		Console.WriteLine("\t{0} = {1}", group.Year, group.FirstLetter);
+//		foreach (var employee in group)
+//		{
+//			Console.WriteLine(employee.Name);
+//		}
+	}
 }
 
 public class Employee
