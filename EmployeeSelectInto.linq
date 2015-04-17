@@ -44,6 +44,22 @@ void Main()
 			Console.WriteLine("\t{0}", employee.Name);
 		}
 	}
+	
+	// Another group example
+	var groupByDate = 
+	  from employee in employees
+	  orderby employee.HireDate.Year, employee.Name[0]
+	  group employee by new {Year = employee.HireDate.Year,
+	  						FirstLetter = employee.Name[0]};
+							
+	foreach (var group in groupByDate)
+	{
+		Console.WriteLine("\t{0} = {1}", group.Key.Year, group.Key.FirstLetter);
+		foreach (var employee in group)
+		{
+			Console.WriteLine(employee.Name);
+		}
+	}
 }
 
 public class Employee
