@@ -32,7 +32,7 @@ void Main()
 	// With Group
 	var groups = 
 		from e in employees
-		group e by e.Name[0] into letter
+		group e by String.Format("{0}{1}", e.Name[0], e.Name[1]) into letter
 		orderby letter.Key ascending
 		select letter;
 	
