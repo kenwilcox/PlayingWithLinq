@@ -71,17 +71,18 @@ void Main()
 		where gEmployee.Count() > 1
 		select new {Year = gEmployee.Key.Year,
 	  				FirstLetter = gEmployee.Key.FirstLetter,
-					Count = gEmployee.Count() 
+					Count = gEmployee.Count(),
+					Employees = gEmployee
 		};
 		
 	Console.WriteLine("Grouping and Projecting");
 	foreach (var group in groupedEmployees)
 	{
-		Console.WriteLine("\t{0} = {1}", group.Year, group.FirstLetter);
-//		foreach (var employee in group)
-//		{
-//			Console.WriteLine(employee.Name);
-//		}
+		Console.WriteLine("{0} = {1}", group.Year, group.Count);
+		foreach (var employee in group.Employees)
+		{
+			Console.WriteLine("\t"+employee.Name);
+		}
 	}
 }
 
