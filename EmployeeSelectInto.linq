@@ -84,6 +84,28 @@ void Main()
 			Console.WriteLine("\t"+employee.Name);
 		}
 	}
+	
+	// Lambda Style
+	var groupedEmp = employees.GroupBy(e => new {
+		  Year = e.HireDate.Year, 
+		  FirstLetter = e.Name[0]
+		})
+		.Where(g => g.Count() > 1)
+		.Select(g => new {
+		  g.Key.Year,
+		  g.Key.FirstLetter,
+		  Count = g.Count(),
+		  Employees = employees
+		});
+	
+	foreach (var group in groupedEmployees)
+	{
+		Console.WriteLine("{0} = {1}", group.Year, group.Count);
+		foreach (var employee in group.Employees)
+		{
+			Console.WriteLine("\t"+employee.Name);
+		}
+	}
 }
 
 public class Employee
