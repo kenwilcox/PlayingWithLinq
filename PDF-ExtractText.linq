@@ -4,11 +4,7 @@
   <Namespace>iTextSharp.text.pdf.parser</Namespace>
 </Query>
 
-// 14K documents in two minutes
-
-// I needed to rip account numbers from 14,000+ pdf documents
-// This code riped through it in two minutes
-
+// 12K documents in a minute and change!
 void Main()
 { 
   //var list = new ConcurrentDictionary<string, string>();
