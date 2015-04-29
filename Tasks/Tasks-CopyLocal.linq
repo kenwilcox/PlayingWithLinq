@@ -4,10 +4,10 @@
   <Namespace>Microsoft.Win32.TaskScheduler.Fluent</Namespace>
 </Query>
 
-var server = "-serverName-";
-var userName = "-userName-";
-var accountName = "-domainName-";
-var password = "-password-";
+var server = Util.GetPassword("task.servername");
+var userName = Util.GetPassword("task.username");
+var accountName = Util.GetPassword("task.accountname");
+var password = Util.GetPassword("task.password");
 Task task = null;
 
 using (TaskService ts = new TaskService(server, userName, accountName, password))

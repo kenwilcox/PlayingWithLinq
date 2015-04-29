@@ -56,10 +56,11 @@ void Main()
 		{ 0x800704DD, "The operation being requested was not performed because the user has not logged on to the network. The specified service does not exist." },
 	};
 	
-	var server = "-servername-";
-	var userName = "-username-";
-	var accountName = "-domain-";
-	var password = "-password-";
+    var server = Util.GetPassword("task.servername");
+    var userName = Util.GetPassword("task.username");
+    var accountName = Util.GetPassword("task.accountname");
+    var password = Util.GetPassword("task.password");
+
 	using (TaskService ts = new TaskService(server, userName, accountName, password))
 	{
 		//bool newVer = (ts.HighestSupportedVersion >= new Version(1, 2));
@@ -128,4 +129,11 @@ void Main()
 		//newTask.State.Dump("State");
 		//*/
 	}
+}
+
+// Define other methods and classes here
+enum ReturnCodes: uint
+{
+  SCHED_S_TASK_READY = 0x00041300,
+	SCHED_E_ALREADY_RUNNING = 0x8004131F
 }
