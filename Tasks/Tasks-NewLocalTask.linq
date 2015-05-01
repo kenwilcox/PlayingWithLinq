@@ -11,7 +11,7 @@ void Main()
 	{
 	  var task = @"MBSI\FluentTest";
 		
-		ts.Execute("notepad.exe").WithArguments(@"C:\temp\KenTask.txt")
+		ts.Execute("notepad.exe").InWorkingDirectory(@"C:\temp\").WithArguments(@"C:\temp\KenTask.txt")
 		  .OnAll(DaysOfTheWeek.Sunday).In(WhichWeek.ThirdWeek).Of(MonthsOfTheYear.May)
 		  //.InTheMonthOf(MonthsOfTheYear.May).OnTheDays(1, 3, 5, 7)
 		  //.Every(1).Days()
