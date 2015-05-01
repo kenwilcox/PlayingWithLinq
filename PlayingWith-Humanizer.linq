@@ -22,6 +22,7 @@ void Main()
   EnumUnderTest.MemberWithoutDescriptionAttribute.Humanize().Dump();
 	
   "Member without description attribute".DehumanizeTo<EnumUnderTest>().ToString().Dump();
+  "PascalCaseWithWords".Humanize().Replace(" ", "_").Dump();
 	
   DateTime.UtcNow.AddHours(-30).Humanize().Dump();
   DateTime.UtcNow.AddHours(-2).Humanize().Dump();
