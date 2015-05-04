@@ -10,17 +10,19 @@ void Main()
   var userName = Util.GetPassword("task.username");
   var accountName = Util.GetPassword("task.accountname");
   var password = Util.GetPassword("task.password");
-
+	
 	using (TaskService ts = new TaskService(server, userName, accountName, password))
 	{
 		//bool newVer = (ts.HighestSupportedVersion >= new Version(1, 2));
 		//newVer.Dump();
 		//ts.AllTasks.Where(p=>!p.Path.Contains("Microsoft"))
-	  var folder = ts.GetFolder(@"\mbsi");
+	  var folder = ts.GetFolder(@"\");//mbsi");
 		//*
+		var count = 0;
+		Util.AutoScrollResults = true;
 		foreach(var item in folder.AllTasks)//.Take(1))
 		{
-			if (item.Path.Contains("Microsoft")) break;
+			//if (item.Path.Contains("Microsoft")) break;
 			//item.Stop();
 			//item.Name.Dump();
 			var ret = (uint)item.LastTaskResult;
@@ -30,6 +32,7 @@ void Main()
 			}
 			var display = String.Format("Status: {0}\nNext Run Time: {1}\nNumber of Missed Runs: {2}\nPath: {3}", status, item.NextRunTime, item.NumberOfMissedRuns, item.Path);
 		  display.Dump(item.Name);
+			count++;
 			//Util.Metatext(String.Format("Next Run Time: {0}", item.NextRunTime)).Dump();
 			//Util.Metatext(String.Format("Number of Missed Runs: {0}", item.NumberOfMissedRuns)).Dump();
 			
@@ -47,7 +50,7 @@ void Main()
 //			}
 			//break;
 		}//*/
-		
+		count.Dump("Total Count");
 		/*
 		var tt = new DailyTrigger();
 		tt.Enabled = true;
@@ -81,11 +84,4 @@ void Main()
 		//newTask.State.Dump("State");
 		//*/
 	}
-}
-
-// Define other methods and classes here
-enum ReturnCodes: uint
-{
-  SCHED_S_TASK_READY = 0x00041300,
-	SCHED_E_ALREADY_RUNNING = 0x8004131F
 }

@@ -1,4 +1,5 @@
 <Query Kind="Program">
+  <Output>DataGrids</Output>
   <NuGetReference>TaskScheduler</NuGetReference>
   <Namespace>Microsoft.Win32.TaskScheduler</Namespace>
   <Namespace>Microsoft.Win32.TaskScheduler.Fluent</Namespace>
@@ -11,10 +12,14 @@ void Main()
 		//bool newVer = (ts.HighestSupportedVersion >= new Version(1, 2));
 		//newVer.Dump();
 		//ts.AllTasks.Where(p=>!p.Path.Contains("Microsoft"))
-	  var folder = ts.GetFolder(@"\Microsoft\Windows");
+		Util.AutoScrollResults = true;
+	  var folder = ts.GetFolder(@"\mbsi");//Microsoft\Windows");
 		//*
+		var count = 0;
+		try {
 		foreach(var item in folder.AllTasks)//.Take(1))
 		{
+		  count++;
 			//if (item.Path.Contains("Microsoft")) break;
 			//if (item.Path.Contains("Activation")) break;
 			//item.Stop();
@@ -26,6 +31,8 @@ void Main()
 			}
 			var display = String.Format("Status: {0}\nNext Run Time: {1}\nNumber of Missed Runs: {2}\nPath: {3}", status, item.NextRunTime, item.NumberOfMissedRuns, item.Path);
 		  display.Dump(item.Name);
+			item.Dump(2);
+			break;
 			//Util.Metatext(String.Format("Next Run Time: {0}", item.NextRunTime)).Dump();
 			//Util.Metatext(String.Format("Number of Missed Runs: {0}", item.NumberOfMissedRuns)).Dump();
 			//item.Dump(2);
@@ -55,7 +62,10 @@ void Main()
 //			}
 			//break;
 		}//*/
-		
+		} catch(Exception e) {
+		  Util.Metatext(e.Message).Dump("EXCEPTION");
+		}
+		Util.Metatext(count.ToString()).Dump("Total");
 		/*
 		var tt = new DailyTrigger();
 		tt.Enabled = true;
