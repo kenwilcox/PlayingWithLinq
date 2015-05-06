@@ -8,7 +8,7 @@
 Task task = null;
 using (TaskService ts = new TaskService())
 {
-  task = ts.GetTask(@"\mbsi\KenBasicTask");
+  task = ts.GetTask(@"\mbsi\KenTest");
   TaskEventLog log = new TaskEventLog(task.Path);
 	log.Count.Dump("Count:");
 	//log.OrderByDescending(l=>l.TimeCreated).Dump(1);
