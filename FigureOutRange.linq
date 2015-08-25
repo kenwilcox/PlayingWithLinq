@@ -2,7 +2,7 @@
 
 void Main()
 {
-  var numbers = "1,5,4,8,10-12,2280-2299,3000,3002,4830-4849,5900-6099,6600-6699,6880-6899,7240-7279,7300-7599,2,3,4,5";
+  var numbers = "1,5,4,8,10-12,2280-2299;3000|3002,4830-4849,5900-6099,6600-6699,6880-6899,7240-7279,7300-7599,2,3,4,5";
   FigureOutRange(numbers, true).Dump();
   FigureOutRange(numbers, false).Dump();
 }
@@ -12,7 +12,7 @@ private IEnumerable<int> FigureOutRange(string numbers, bool distinct)
 {
   List<int> list = new List<int>();
 
-  string[] items = numbers.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+  string[] items = numbers.Split(new char[] { ',', ';', '|' }, StringSplitOptions.RemoveEmptyEntries);
   foreach (string item in items)
   {
     string[] range = item.Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
