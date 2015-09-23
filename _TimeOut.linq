@@ -32,11 +32,21 @@ void Main()
       TimeTrigger trigger = new TimeTrigger(punchOut);
       var msgTitle = "Punch Out";
       var msgBody = "It's time to go home!";
-      //ShowMessageAction action = new ShowMessageAction(msgBody, msgTitle);
       var action = new ExecAction("notify.exe", msgTitle + "|" + msgBody, ".");
       ts.AddTask(@"MBSI\_TimeOut", trigger, action);
       
       Console.WriteLine("TimeOut Updated");
+    }
+    
+    using (TaskService ts = new TaskService())
+    {
+      TimeTrigger trigger = new TimeTrigger(punchOut);
+      var msgTitle = "Time for Lunch";
+      var msgBody = "00:30:00";
+      var action = new ExecAction("notify.exe", msgTitle + "|" + msgBody, ".");
+      ts.AddTask(@"MBSI\_LunchTime", trigger, action);
+      
+      Console.WriteLine("LunchTime Updated");
     }
 	}
 	
