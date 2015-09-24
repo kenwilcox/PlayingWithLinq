@@ -40,7 +40,7 @@ void Main()
     
     using (TaskService ts = new TaskService())
     {
-      TimeTrigger trigger = new TimeTrigger(punchOut);
+      TimeTrigger trigger = new TimeTrigger(lunchTime);
       var msgTitle = "Time for Lunch";
       var msgBody = "00:30:00";
       var action = new ExecAction("notify.exe", msgTitle + "|" + msgBody, ".");
