@@ -42,7 +42,7 @@ void Main()
     {
       TimeTrigger trigger = new TimeTrigger(lunchTime);
       var msgTitle = "Time for Lunch";
-      var msgBody = "00:30:00";
+      var msgBody = "00:00:00";
       var action = new ExecAction("notify.exe", msgTitle + "|" + msgBody, ".");
       ts.AddTask(@"MBSI\_LunchTime", trigger, action);
       
