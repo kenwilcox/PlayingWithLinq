@@ -12,3 +12,8 @@ let sorted = GroupBy apples (fun x -> x)
 
 apples.Dump()
 sorted.Dump()
+
+let sumLengths strList = 
+  strList |> List.map String.length |> List.sum
+let len = sumLengths fruits
+len.Dump()
