@@ -19,3 +19,19 @@ let mult3ThenSquare = mult3 >> square
 // list of values
 [1..10] |> List.map add2ThenMult3 |> printfn "%A"
 [1..10] |> List.map mult3ThenSquare |> printfn "%A"
+
+// helper functions
+let logMsg msg x = printf "%s%i" msg x; x // without linefeed
+let logMsgN msg x = printfn "%s%i" msg x; x // with linefeed
+
+// new composed function with new improved logging!
+let mult3ThenSquareLogged = 
+  logMsg "before="
+  >> mult3
+  >> logMsg " after mult3="
+  >> square
+  >> logMsgN " result="
+
+(mult3ThenSquareLogged 5).Dump("Just 5")
+([1..10] |> List.map mult3ThenSquareLogged).Dump("1-10")
+
