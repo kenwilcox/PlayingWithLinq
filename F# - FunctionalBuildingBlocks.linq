@@ -35,3 +35,11 @@ let mult3ThenSquareLogged =
 (mult3ThenSquareLogged 5).Dump("Just 5")
 ([1..10] |> List.map mult3ThenSquareLogged).Dump("1-10")
 
+let listOfFunctions = [
+  mult3;
+  square;
+  add2;
+  logMsgN "result=";
+  ]
+let allFunctions = List.reduce(>>) listOfFunctions
+(allFunctions 5).Dump("All Functions 5")
