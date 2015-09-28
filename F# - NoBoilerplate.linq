@@ -29,3 +29,11 @@ let alternatingSum n =
 
 let alternatingResult = alternatingSum 100
 alternatingResult.Dump("Alternating Result")
+
+let sumOfSquares n =
+  let initialValue = 0
+  let action sumSoFar x = sumSoFar + (x * x)
+  [1..n] |> List.fold action initialValue
+
+let sumResult = sumOfSquares 100
+sumResult.Dump("Sum of Squares")
