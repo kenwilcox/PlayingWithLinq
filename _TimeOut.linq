@@ -7,7 +7,7 @@ void Main()
 {
   DateTime punchIn = DateTime.Now;
   //DateTime punchIn = new DateTime(2015, 8, 7, 8, 35, 0);
-  DateTime lunchTime = punchIn.AddHours(5);
+  DateTime lunchTime = punchIn.AddHours(4).AddMinutes(30);
   DateTime punchOut = punchIn.AddHours(8).AddMinutes(30);
   Console.WriteLine(punchOut.ToShortTimeString());
 	
