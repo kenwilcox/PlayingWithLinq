@@ -11,4 +11,5 @@ for (var i = 0; i < max; i++)
 {
   counter++;
   pb.Fraction = (double)counter/max;
+  System.Threading.Thread.Sleep(1);
 }
