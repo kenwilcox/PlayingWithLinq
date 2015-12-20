@@ -10,7 +10,12 @@ void Main()
   (1.Second() + 1.Minute()).Dump();
   1.Second().And(1.Minute()).Dump();
   1.Minute().Less(1.Second()).Dump();
-  3.Hours().And(54.Minutes()).Dump();
+  3.Hours().And(54.Minutes()).And(12.Seconds()).Dump();
+  
+  // Some tests
+  (1.Minute() == 60.Seconds()).Dump("Minute");
+  (60.Minutes() == 1.Hour()).Dump("Hour");
+  (48.Hours() == 2.Days()).Dump("Days");
 }
 
 // Define other methods and classes here
