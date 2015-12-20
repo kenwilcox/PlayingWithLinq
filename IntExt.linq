@@ -4,8 +4,13 @@ void Main()
 {
   1.Second().Dump();
   2.Seconds().Dump();
+  1.Minute().Dump();
   2.Minutes().Dump();
   1.Day().Dump();
+  (1.Second() + 1.Minute()).Dump();
+  1.Second().And(1.Minute()).Dump();
+  1.Minute().Less(1.Second()).Dump();
+  3.Hours().And(54.Minutes()).Dump();
 }
 
 // Define other methods and classes here
@@ -49,5 +54,15 @@ public static class IntExt
   public static int Days(this int integer)
   {
     return integer.Day();
+  }
+
+  public static int And(this int integer, int add)
+  {
+    return integer + add;
+  }
+  
+  public static int Less(this int integer, int less)
+  {
+    return integer - less;
   }
 }
