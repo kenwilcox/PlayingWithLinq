@@ -13,9 +13,16 @@ void Main()
   3.Hours().And(54.Minutes()).And(12.Seconds()).Dump();
   
   // Some tests
-  (1.Minute() == 60.Seconds()).Dump("Minute");
+  (60.Seconds() == 1.Minute()).Dump("Minute");
+  (180.Seconds() == 3.Minutes()).Dump("Minutes");
   (60.Minutes() == 1.Hour()).Dump("Hour");
+  (240.Minutes() == 4.Hours()).Dump("Hours");
+  (24.Hours() == 1.Day()).Dump("Day");
   (48.Hours() == 2.Days()).Dump("Days");
+  
+  (3.Hours().And(60.Minutes()) == 4.Hours()).Dump("Hour Math");
+  (60.Seconds().And(60.Seconds()) == 2.Minutes()).Dump("Second Math");
+  (60.Seconds().And(60.Seconds()).And(65.Seconds().Less(5.Seconds())) == 3.Minutes()).Dump("Second Math");
 }
 
 // Define other methods and classes here
