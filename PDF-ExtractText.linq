@@ -2,6 +2,9 @@
   <NuGetReference>iTextSharp</NuGetReference>
   <Namespace>iTextSharp.text.pdf</Namespace>
   <Namespace>iTextSharp.text.pdf.parser</Namespace>
+  <Namespace>System.Collections.Concurrent</Namespace>
+  <Namespace>System.IO</Namespace>
+  <Namespace>System.Threading.Tasks</Namespace>
 </Query>
 
 // 12K documents in a minute and change!
@@ -10,7 +13,7 @@ void Main()
   //var list = new ConcurrentDictionary<string, string>();
   var list = new ConcurrentBag<Tuple<string, string>>();
   var path = @"C:\E25 Balance\";
-  //path = @"C:\Dev\PDF\";
+  path = @"C:\Dev\PDF\";
   
   Parallel.ForEach(Directory.GetFiles(path, "*.pdf", SearchOption.TopDirectoryOnly), file => {
   	//var output = Path.ChangeExtension(file, ".txt");
@@ -19,7 +22,7 @@ void Main()
 	string dump = ConvertToText(file, bytes);
 	var rex = Regex.Match(dump, @"ACT# (\d+)").Groups[1];
 	//list.TryAdd(Path.GetFileName(file), rex.Value);// .Captures[0]);
-	list.Add(Tuple.Create(Path.GetFileName(file), rex.Value));
+	list.Add(Tuple.Create(System.IO.Path.GetFileName(file), rex.Value));
   });
   
 //  foreach(var file in Directory.GetFiles(path, "*.pdf", SearchOption.TopDirectoryOnly)) 
