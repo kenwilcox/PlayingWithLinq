@@ -5,12 +5,12 @@ void Main()
   // This is so we can do string comparison on the GPU
   
   var test1 = "EFT1234523";
-  var test2 = "1234523";
+  var test2 = "12345#2";
   
   var bits1 = System.Text.Encoding.UTF8.GetBytes(test1);
   var bits2 = System.Text.Encoding.UTF8.GetBytes(test2);
   
-  bytesInBytes(bits1, bits2).Dump();
+  bytesInBytes(bits1, bits2, true).Dump();
 }
 
 // Define other methods and classes here
@@ -29,15 +29,16 @@ bool bytesInBytes(byte[] bits1, byte[] bits2, bool partial = false)
     }
     else
     {
-      if (partial)
+      if (!partial)
       {
         matchBuffer.Clear();
       }
     }
     i++;
-    if (j > bits2.Length) break;
+    if (j >= bits2.Length) break;
   }
   //matchBuffer.Dump();
-  System.Text.Encoding.UTF8.GetString(matchBuffer.ToArray()).Dump();
+  //System.Text.Encoding.UTF8.GetString(matchBuffer.ToArray()).Dump();
+  if (partial) return matchBuffer.Count() > 0;
   return bits2.Length == matchBuffer.Count();
 }
