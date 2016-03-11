@@ -7,7 +7,6 @@
     <Database>Payments</Database>
     <ShowServer>true</ShowServer>
   </Connection>
-  <Output>DataGrids</Output>
 </Query>
 
 --This has been merged with Trace # 1264643697
